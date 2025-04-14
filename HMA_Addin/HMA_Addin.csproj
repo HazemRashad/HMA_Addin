@@ -70,12 +70,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="icons\add.png" />
-    <Content Include="icons\analyze.png" />
-    <Content Include="icons\annotate.png" />
-    <Content Include="icons\ITI logo.png" />
-    <Content Include="icons\modify.png" />
-    <Content Include="icons\remove.png" />
+    <EmbeddedResource Include="Icons\add.png" />
+    <EmbeddedResource Include="Icons\analyze.png" />
+    <EmbeddedResource Include="Icons\annotate.png" />
+    <EmbeddedResource Include="Icons\ITI logo.png" />
+    <EmbeddedResource Include="Icons\modify.png" />
+    <EmbeddedResource Include="Icons\remove.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

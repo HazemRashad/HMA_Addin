@@ -22,17 +22,18 @@ namespace HMA_Addin
 
             try
             {
+                var columns = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_StructuralColumns).
+                              WhereElementIsNotElementType().ToElements();
+                //List<Reference> selectedColumnsRef = uidoc.Selection.PickObjects(ObjectType.Element, "Select columns to annotate.").ToList();
 
-                List<Reference> selectedColumnsRef = uidoc.Selection.PickObjects(ObjectType.Element, "Select columns to annotate.").ToList();
+                //List<ElementId> selectedColumnsId = new List<ElementId>();
+                //                foreach (Reference reference in selectedColumnsRef) selectedColumnsId.Add(reference.ElementId);
 
-                List<ElementId> selectedColumnsId = new List<ElementId>();
-                                foreach (Reference reference in selectedColumnsRef) selectedColumnsId.Add(reference.ElementId);
+                //List<Element> selectedColumns = selectedColumnsRef
+                //   .Select(r => doc.GetElement(r)).Where(e => e is FamilyInstance && e.Location is LocationPoint)
+                //   .ToList();
 
-                List<Element> selectedColumns = selectedColumnsRef
-                   .Select(r => doc.GetElement(r)).Where(e => e is FamilyInstance && e.Location is LocationPoint)
-                   .ToList();
-
-                if (selectedColumns.Count == 0)
+                if (columns.Count == 0)
                 {
                     TaskDialog.Show("Error", "No valid columns with LocationPoint found.");
                     return Result.Failed;
@@ -85,7 +86,7 @@ namespace HMA_Addin
                         #endregion
 
                         #region tags
-                        foreach (Element column in selectedColumns)
+                        foreach (Element column in columns)
                             {
                                 LocationPoint location = (LocationPoint)column.Location;
                                 XYZ tagPosition = new XYZ(location.Point.X + 1, location.Point.Y + 2, location.Point.Z);
@@ -94,7 +95,7 @@ namespace HMA_Addin
                             }
                             #endregion
 
-                            TaskDialog.Show("Success", $"Annotated {selectedColumns.Count} columns.");
+                            TaskDialog.Show("Success", $"Annotated {columns.Count} columns.");
                         
                             trans.Commit();
                             return Result.Succeeded;
