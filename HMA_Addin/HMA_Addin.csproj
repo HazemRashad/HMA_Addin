@@ -69,6 +69,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="icons\add.png" />
+    <Content Include="icons\analyze.png" />
+    <Content Include="icons\annotate.png" />
+    <Content Include="icons\ITI logo.png" />
+    <Content Include="icons\modify.png" />
+    <Content Include="icons\remove.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy "$(TargetDir)"."" "$(AppData)\Autodesk\Revit\Addins\2022\"
